@@ -35,71 +35,62 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 exports.__esModule = true;
-var express_1 = __importDefault(require("express"));
-var body_parser_1 = __importDefault(require("body-parser"));
-var user_routes_1 = __importDefault(require("./handlers/user_routes"));
-var product_routes_1 = __importDefault(require("./handlers/product_routes"));
-var order_routes_1 = __importDefault(require("./handlers/order_routes"));
-var app = (0, express_1["default"])();
-var address = "0.0.0.0:3000";
-app.use(body_parser_1["default"].json());
-app.get('/', function (req, res) {
-    return __awaiter(this, void 0, void 0, function () {
-        return __generator(this, function (_a) {
-            res.send('Hello World!');
-            return [2 /*return*/];
-        });
+var user_1 = require("../models/user");
+var store = new user_1.UserStore();
+var index = function (_req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var users;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, store.index()];
+            case 1:
+                users = _a.sent();
+                res.json(users);
+                return [2 /*return*/];
+        }
     });
-});
-app.listen(3000, function () {
-    console.log("starting app on: ".concat(address));
-});
-(0, user_routes_1["default"])(app);
-(0, product_routes_1["default"])(app);
-(0, order_routes_1["default"])(app);
-// import { UserStore, User } from './models/user'
-// import { ProductStore } from './models/product'
-// import { OrderStore } from './models/order'
-// <<<< Product Model Testing >>>>
-// const store = new UserStore()
-// const create_test = await store.create({
-//     first_name: 'John',
-//     last_name: "smith",
-//     password: 'cows',
-//     id: 1
-// });
-// const user_index_test = await store.index();
-// console.log(user_index_test)
-// const user_delete_test = await store.delete(2);
-// const user_show_test = await store.show(15);
-// console.log(user_show_test)
-// <<<< Product Model Testing >>>>
-// const store = new ProductStore();
-// const create_test = await store.create({
-//     product_name: "dog food",
-//     product_price: 5,
-//     id: 1
-// });
-// const index_test = await store.index();
-// console.log(index_test)
-// const user_delete_test = await store.delete(1);
-// const show_test = await store.show(7);
-// console.log(show_test)
-// <<<< Order Model Testing >>>>
-// const store = new OrderStore();
-// const create_test = await store.create({
-//     product_id: 1,
-//     product_quantity: 6,
-//     user_id: 1,
-//     order_status: "INCOMPLETE",
-//     id: 1
-// });
-// const index_test = await store.index();
-// console.log(index_test)
-// const user_delete_test = await store.delete(1);
-// const show_test = await store.show(7);
-// console.log(show_test)
+}); };
+var show = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var article;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, store.show(Number(req.params.id))];
+            case 1:
+                article = _a.sent();
+                res.json(article);
+                return [2 /*return*/];
+        }
+    });
+}); };
+// const create = async (req: Request, res: Response) => {
+//     try {
+//         const user: User = {
+//             title: req.body.title,
+//             content: req.body.content,
+//         }
+//         const newArticle = await store.create(article)
+//         res.json(newArticle)
+//     } catch(err) {
+//         res.status(400)
+//         res.json(err)
+//     }
+// }
+var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var deleted;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0: return [4 /*yield*/, store["delete"](req.body.id)];
+            case 1:
+                deleted = _a.sent();
+                res.json(deleted);
+                return [2 /*return*/];
+        }
+    });
+}); };
+var user_routes = function (app) {
+    app.get('/users', index);
+    app.get('/users/:id', show);
+    // app.post('/users', create)
+    app["delete"]('/users/:id', destroy);
+};
+exports["default"] = user_routes;
