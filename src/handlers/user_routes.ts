@@ -13,20 +13,22 @@ const show = async (req: Request, res: Response) => {
    res.json(article)
 }
 
-// const create = async (req: Request, res: Response) => {
-//     try {
-//         const user: User = {
-//             title: req.body.title,
-//             content: req.body.content,
-//         }
+const create = async (req: Request, res: Response) => {
+    try {
+        const user: User = {
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            password: req.body.password,
+            id: 1
+        }
 
-//         const newArticle = await store.create(article)
-//         res.json(newArticle)
-//     } catch(err) {
-//         res.status(400)
-//         res.json(err)
-//     }
-// }
+        const newArticle = await store.create(article)
+        res.json(newArticle)
+    } catch(err) {
+        res.status(400)
+        res.json(err)
+    }
+}
 
 const destroy = async (req: Request, res: Response) => {
     const deleted = await store.delete(req.body.id)
@@ -36,7 +38,7 @@ const destroy = async (req: Request, res: Response) => {
 const user_routes = (app: express.Application) => {
   app.get('/users', index)
   app.get('/users/:id', show)
-// app.post('/users', create)
+  app.post('/users', create)
   app.delete('/users/:id', destroy)
 }
 
