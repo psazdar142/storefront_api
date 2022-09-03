@@ -47,22 +47,11 @@ var address = "0.0.0.0:3000";
 app.use(body_parser_1["default"].json());
 app.get('/', function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var store, user_delete_test, user_show_test;
+        var store;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    res.send('Hello World!');
-                    store = new user_1.UserStore();
-                    return [4 /*yield*/, store["delete"]('1')];
-                case 1:
-                    user_delete_test = _a.sent();
-                    console.log("user_delete_test: " + user_delete_test);
-                    return [4 /*yield*/, store.show('1')];
-                case 2:
-                    user_show_test = _a.sent();
-                    console.log("user_show_test: " + user_show_test);
-                    return [2 /*return*/];
-            }
+            res.send('Hello World!');
+            store = new user_1.UserStore();
+            return [2 /*return*/];
         });
     });
 });

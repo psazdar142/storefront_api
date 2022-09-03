@@ -35,7 +35,8 @@ export class UserStore {
           throw new Error(`Could not add new user ${u.first_name}. Error: ${err}`)
         }
     }
-    async delete(id: string): Promise<User[]> {
+
+    async delete(id: Number): Promise<User[]> {
         try {
             // @ts-ignore
             const conn = await client.connect()
@@ -49,11 +50,11 @@ export class UserStore {
         }
     }
 
-    async show(id: string): Promise<User> {
+    async show(id: Number): Promise<User> {
         try {
             // @ts-ignore
             const conn = await client.connect()
-            const sql = 'SELECT * FROM users_table WHERE id=($1) RETURNING *'
+            const sql = 'SELECT * FROM users_table WHERE id=($1)'
             const result = await conn.query(sql, [id])
             conn.release()
             return result.rows[0]

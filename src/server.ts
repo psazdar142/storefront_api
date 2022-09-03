@@ -24,11 +24,10 @@ app.get('/', async function (req: Request, res: Response) {
     // const user_index_test = await store.index();
     // console.log(user_index_test)
 
-    const user_delete_test = await store.delete('1');
-    console.log("user_delete_test: " + user_delete_test)
+    // const user_delete_test = await store.delete(2);
 
-    const user_show_test = await store.show('1');
-    console.log("user_show_test: " + user_show_test)
+    // const user_show_test = await store.show(15);
+    // console.log(user_show_test)
 })
 
 app.listen(3000, function () {
