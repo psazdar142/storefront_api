@@ -18,7 +18,7 @@ export class UserStore {
             conn.release()
             return result.rows 
         } catch (err) {
-          throw new Error(`Could not get books. Error: ${err}`)
+          throw new Error(`Could not get users. Error: ${err}`)
         }
     }
 

@@ -41,17 +41,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 var express_1 = __importDefault(require("express"));
 var body_parser_1 = __importDefault(require("body-parser"));
-var user_1 = require("./models/user");
+var order_1 = require("./models/order");
 var app = (0, express_1["default"])();
 var address = "0.0.0.0:3000";
 app.use(body_parser_1["default"].json());
 app.get('/', function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var store;
+        var store, create_test;
         return __generator(this, function (_a) {
-            res.send('Hello World!');
-            store = new user_1.UserStore();
-            return [2 /*return*/];
+            switch (_a.label) {
+                case 0:
+                    res.send('Hello World!');
+                    store = new order_1.OrderStore();
+                    return [4 /*yield*/, store.create({
+                            product_id: 1,
+                            product_quantity: 6,
+                            user_id: 3,
+                            order_status: "INCOMPLETE",
+                            id: 1
+                        })];
+                case 1:
+                    create_test = _a.sent();
+                    return [2 /*return*/];
+            }
         });
     });
 });

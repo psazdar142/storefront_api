@@ -39,12 +39,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 exports.__esModule = true;
-exports.UserStore = void 0;
+exports.ProductStore = void 0;
 var database_1 = __importDefault(require("../database"));
-var UserStore = /** @class */ (function () {
-    function UserStore() {
+var ProductStore = /** @class */ (function () {
+    function ProductStore() {
     }
-    UserStore.prototype.index = function () {
+    ProductStore.prototype.index = function () {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_1;
             return __generator(this, function (_a) {
@@ -54,7 +54,7 @@ var UserStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = 'SELECT * FROM users_table';
+                        sql = 'SELECT * FROM products_table';
                         return [4 /*yield*/, conn.query(sql)];
                     case 2:
                         result = _a.sent();
@@ -62,15 +62,15 @@ var UserStore = /** @class */ (function () {
                         return [2 /*return*/, result.rows];
                     case 3:
                         err_1 = _a.sent();
-                        throw new Error("Could not get users. Error: ".concat(err_1));
+                        throw new Error("Could not get products. Error: ".concat(err_1));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    UserStore.prototype.create = function (u) {
+    ProductStore.prototype.create = function (p) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, user, err_2;
+            var conn, sql, result, Product, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -78,24 +78,24 @@ var UserStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = 'INSERT INTO users_table (first_name, last_name, password) VALUES($1, $2, $3) RETURNING *';
-                        return [4 /*yield*/, conn.query(sql, [u.first_name, u.last_name, u.password])];
+                        sql = 'INSERT INTO products_table (product_name, product_price) VALUES($1, $2) RETURNING *';
+                        return [4 /*yield*/, conn.query(sql, [p.product_name, p.product_price])];
                     case 2:
                         result = _a.sent();
                         conn.release();
-                        user = result.rows[0];
-                        return [2 /*return*/, user];
+                        Product = result.rows[0];
+                        return [2 /*return*/, Product];
                     case 3:
                         err_2 = _a.sent();
-                        throw new Error("Could not add new user ".concat(u.first_name, ". Error: ").concat(err_2));
+                        throw new Error("Could not add new Product ".concat(p.product_name, ". Error: ").concat(err_2));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    UserStore.prototype["delete"] = function (id) {
+    ProductStore.prototype["delete"] = function (id) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, user, err_3;
+            var conn, sql, result, Product, err_3;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -103,22 +103,22 @@ var UserStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = 'DELETE FROM users_table WHERE id=($1) RETURNING *';
+                        sql = 'DELETE FROM products_table WHERE id=($1) RETURNING *';
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
                         conn.release();
-                        user = result.rows[0];
-                        return [2 /*return*/, user];
+                        Product = result.rows[0];
+                        return [2 /*return*/, Product];
                     case 3:
                         err_3 = _a.sent();
-                        throw new Error("Could not delete user ".concat(id, ". Error: ").concat(err_3));
+                        throw new Error("Could not delete Product ".concat(id, ". Error: ").concat(err_3));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    UserStore.prototype.show = function (id) {
+    ProductStore.prototype.show = function (id) {
         return __awaiter(this, void 0, void 0, function () {
             var conn, sql, result, err_4;
             return __generator(this, function (_a) {
@@ -128,7 +128,7 @@ var UserStore = /** @class */ (function () {
                         return [4 /*yield*/, database_1["default"].connect()];
                     case 1:
                         conn = _a.sent();
-                        sql = 'SELECT * FROM users_table WHERE id=($1)';
+                        sql = 'SELECT * FROM products_table WHERE id=($1)';
                         return [4 /*yield*/, conn.query(sql, [id])];
                     case 2:
                         result = _a.sent();
@@ -136,12 +136,12 @@ var UserStore = /** @class */ (function () {
                         return [2 /*return*/, result.rows[0]];
                     case 3:
                         err_4 = _a.sent();
-                        throw new Error("Could not find user ".concat(id, ". Error: ").concat(err_4));
+                        throw new Error("Could not find Product ".concat(id, ". Error: ").concat(err_4));
                     case 4: return [2 /*return*/];
                 }
             });
         });
     };
-    return UserStore;
+    return ProductStore;
 }());
-exports.UserStore = UserStore;
+exports.ProductStore = ProductStore;
