@@ -22,7 +22,7 @@ const create = async (req: Request, res: Response) => {
             id: 1
         }
 
-        const newArticle = await store.create(article)
+        const newArticle = await store.create(user)
         res.json(newArticle)
     } catch(err) {
         res.status(400)
