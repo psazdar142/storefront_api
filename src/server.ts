@@ -12,6 +12,13 @@ app.use(bodyParser.json())
 
 app.get('/', async function (req: Request, res: Response) {
     res.send('Hello World!')
+    const store = new UserStore()
+const create_test = await store.create({
+    first_name: 'John',
+    last_name: "smith",
+    password: 'cows',
+    id: 1
+});
 })
 
 app.listen(3000, function () {
@@ -22,10 +29,10 @@ user_routes(app)
 product_routes(app)
 order_routes(app)
 
-// import { UserStore, User } from './models/user'
+import { UserStore, User } from './models/user'
 // import { ProductStore } from './models/product'
 // import { OrderStore } from './models/order'
-// <<<< Product Model Testing >>>>
+// <<<< User Model Testing >>>>
 // const store = new UserStore()
 // const create_test = await store.create({
 //     first_name: 'John',
