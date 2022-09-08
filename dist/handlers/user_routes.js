@@ -62,32 +62,19 @@ var show = function (req, res) { return __awaiter(void 0, void 0, void 0, functi
         }
     });
 }); };
-var create = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var user, newArticle, err_1;
-    return __generator(this, function (_a) {
-        switch (_a.label) {
-            case 0:
-                _a.trys.push([0, 2, , 3]);
-                user = {
-                    first_name: req.body.first_name,
-                    last_name: req.body.last_name,
-                    password: req.body.password,
-                    id: 1
-                };
-                return [4 /*yield*/, store.create(user)];
-            case 1:
-                newArticle = _a.sent();
-                res.json(newArticle);
-                return [3 /*break*/, 3];
-            case 2:
-                err_1 = _a.sent();
-                res.status(400);
-                res.json(err_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
-        }
-    });
-}); };
+// const create = async (req: Request, res: Response) => {
+//     try {
+//         const user: User = {
+//             title: req.body.title,
+//             content: req.body.content,
+//         }
+//         const newArticle = await store.create(article)
+//         res.json(newArticle)
+//     } catch(err) {
+//         res.status(400)
+//         res.json(err)
+//     }
+// }
 var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var deleted;
     return __generator(this, function (_a) {
@@ -103,7 +90,7 @@ var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
 var user_routes = function (app) {
     app.get('/users', index);
     app.get('/users/:id', show);
-    app.post('/users', create);
+    // app.post('/users', create)
     app["delete"]('/users/:id', destroy);
 };
 exports["default"] = user_routes;

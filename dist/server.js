@@ -49,22 +49,9 @@ var address = "0.0.0.0:3000";
 app.use(body_parser_1["default"].json());
 app.get('/', function (req, res) {
     return __awaiter(this, void 0, void 0, function () {
-        var store, create_test;
         return __generator(this, function (_a) {
-            switch (_a.label) {
-                case 0:
-                    res.send('Hello World!');
-                    store = new user_1.UserStore();
-                    return [4 /*yield*/, store.create({
-                            first_name: 'John',
-                            last_name: "smith",
-                            password: 'cows',
-                            id: 1
-                        })];
-                case 1:
-                    create_test = _a.sent();
-                    return [2 /*return*/];
-            }
+            res.send('Hello World!');
+            return [2 /*return*/];
         });
     });
 });
@@ -74,10 +61,10 @@ app.listen(3000, function () {
 (0, user_routes_1["default"])(app);
 (0, product_routes_1["default"])(app);
 (0, order_routes_1["default"])(app);
-var user_1 = require("./models/user");
+// import { UserStore, User } from './models/user'
 // import { ProductStore } from './models/product'
 // import { OrderStore } from './models/order'
-// <<<< User Model Testing >>>>
+// <<<< Product Model Testing >>>>
 // const store = new UserStore()
 // const create_test = await store.create({
 //     first_name: 'John',
