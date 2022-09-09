@@ -41,6 +41,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 exports.__esModule = true;
 exports.UserStore = void 0;
 var database_1 = __importDefault(require("../database"));
+var bcrypt_1 = __importDefault(require("bcrypt"));
+var _a = process.env, BCRYPT_PASSWORD = _a.BCRYPT_PASSWORD, SALT_ROUNDS = _a.SALT_ROUNDS;
 var UserStore = /** @class */ (function () {
     function UserStore() {
     }
@@ -70,7 +72,7 @@ var UserStore = /** @class */ (function () {
     };
     UserStore.prototype.create = function (u) {
         return __awaiter(this, void 0, void 0, function () {
-            var conn, sql, result, user, err_2;
+            var conn, sql, hash, result, user, err_2;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -79,7 +81,8 @@ var UserStore = /** @class */ (function () {
                     case 1:
                         conn = _a.sent();
                         sql = 'INSERT INTO users_table (first_name, last_name, password) VALUES($1, $2, $3) RETURNING *';
-                        return [4 /*yield*/, conn.query(sql, [u.first_name, u.last_name, u.password])];
+                        hash = bcrypt_1["default"].hashSync(u.password + BCRYPT_PASSWORD, parseInt(String(SALT_ROUNDS)));
+                        return [4 /*yield*/, conn.query(sql, [u.first_name, u.last_name, hash])];
                     case 2:
                         result = _a.sent();
                         conn.release();

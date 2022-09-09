@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import user_routes from './handlers/user_routes'
 import product_routes from './handlers/product_routes'
 import order_routes from './handlers/order_routes'
+import { UserStore } from './models/user'
 
 const app: express.Application = express()
 const address: string = "0.0.0.0:3000"
@@ -12,6 +13,13 @@ app.use(bodyParser.json())
 
 app.get('/', async function (req: Request, res: Response) {
     res.send('Hello World!')
+    const store = new UserStore()
+    const create_test = await store.create({
+        first_name: 'Jimmy',
+        last_name: "Hendrix",
+        password: 'cows',
+        id: 1
+    });
 })
 
 app.listen(3000, function () {
@@ -25,7 +33,7 @@ order_routes(app)
 // import { UserStore, User } from './models/user'
 // import { ProductStore } from './models/product'
 // import { OrderStore } from './models/order'
-// <<<< Product Model Testing >>>>
+// <<<< User Model Testing >>>>
 // const store = new UserStore()
 // const create_test = await store.create({
 //     first_name: 'John',
