@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 // import { UserStore, User } from "../user";
-const user_1 = require("../user");
+const user_1 = require("../src/models/user");
 const store = new user_1.UserStore();
 describe("User Model", () => {
     it('should have an index method', () => {

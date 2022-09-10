@@ -7,7 +7,7 @@
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
     "test": "ENV=test && npx tsc && db-migrate --env test up && jasmine && db-migrate db:drop test",
-    "tsc": "tsc"
+    "tsc": "tsc --outDir ./dist"
   },
   "author": "Udacity",
   "license": "ISC",

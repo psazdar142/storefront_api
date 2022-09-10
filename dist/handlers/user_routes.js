@@ -92,7 +92,7 @@ var destroy = function (req, res) { return __awaiter(void 0, void 0, void 0, fun
     var deleted;
     return __generator(this, function (_a) {
         switch (_a.label) {
-            case 0: return [4 /*yield*/, store["delete"](req.body.id)];
+            case 0: return [4 /*yield*/, store["delete"](Number(req.params.id))];
             case 1:
                 deleted = _a.sent();
                 res.json(deleted);
