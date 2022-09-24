@@ -18,11 +18,24 @@ describe("User Model", () => {
       expect(store.create).toBeDefined();
     });
   
-    // it('should have a update method', () => {
-    //   expect(store.index).toBeDefined();
-    // });
-  
     it('should have a delete method', () => {
       expect(store.delete).toBeDefined();
     });
+
+
+    it('create method should add a book', async () => {
+      const result = await store.create({
+        first_name: 'John',
+        last_name: "smith",
+        password: 'cows',
+        id: 1
+      });
+      expect(result).toEqual({
+        first_name: 'John',
+        last_name: "smith",
+        password: 'cows',
+        id: 1
+      });
+    });
+
   });
