@@ -1,6 +1,3 @@
-// import { UserStore } from "../models/user";
-
-// require { UserStore } from "../models/user";\
 const {UserStore} = require("../models/user") 
 
 const store = new UserStore()
@@ -27,15 +24,30 @@ describe("User Model", () => {
       const result = await store.create({
         first_name: 'John',
         last_name: "smith",
-        password: 'cows',
+        password: "cows",
         id: 1
       });
-      expect(result).toEqual({
+      expect(result).toEqual(jasmine.objectContaining({
         first_name: 'John',
         last_name: "smith",
-        password: 'cows',
         id: 1
+      }));
+    });
+
+    it('show method should return the correct user', async () => {
+      const create_test = store.create({
+        first_name: 'Sally',
+        last_name: "Runner",
+        password: 'Apples',
+        id: 2
       });
+
+      const result = await store.show("2");
+      expect(result).toEqual(jasmine.objectContaining({
+        first_name: 'Sally',
+        last_name: "Runner",
+        id: 2
+      }));
     });
 
   });

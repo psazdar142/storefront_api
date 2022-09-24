@@ -1,6 +1,7 @@
 import dotenv from 'dotenv'
 import { Pool } from 'pg'
-
+let ENV = process.env.ENV
+console.log("line 3 is " + ENV)
 dotenv.config()
 
 const {
@@ -9,15 +10,14 @@ const {
     POSGRES_USER,
     POSTGRES_PASSWORD,
     PORT,
-    DB_ENV,
     POSTGRES_TESTING_DB
 } = process.env
-
+ENV = ENV || process.env.ENV
 // let client
-console.log('DB_ENV is ' + DB_ENV)
+console.log('ENV is ' + ENV)
 
 let current_db; 
-if(DB_ENV == 'dev'){
+if(ENV == 'dev'){
     current_db = POSTGRES_DB;
 }
 else{
