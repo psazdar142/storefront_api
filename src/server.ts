@@ -4,10 +4,17 @@ import bodyParser from 'body-parser'
 import user_routes from './handlers/user_routes'
 import product_routes from './handlers/product_routes'
 import order_routes from './handlers/order_routes'
+import cors from 'cors'
 
 const app: express.Application = express()
 const address: string = "0.0.0.0:3000"
 
+const corsOptions = {
+    origin: 'http://someotherdomain.com',
+    optionsSuccessStatus: 200
+}
+
+app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
 app.get('/', async function (req: Request, res: Response) {
