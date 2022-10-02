@@ -40,41 +40,22 @@ describe("User Model", () => {
       }));
     });
 
-    // it('show method should return the correct user', async () => {
-    //   const result = await store.show("1");
+    it('show method should return the correct user', async () => {
+      const result = await store.show("1");
+      expect(result).toEqual(jasmine.objectContaining({
+        id: 1,
+        first_name: 'John',
+        last_name: "smith"
+      }));
+    });
+
+    // it('index method should return all users', async () => {
+    //   const result = await store.index;
     //   expect(result).toEqual(jasmine.objectContaining({
     //     id: 1,
     //     first_name: 'John',
     //     last_name: "smith"
     //   }));
-
-      
-    //   // const create_test = store.create({
-    //   //   first_name: 'Sally',
-    //   //   last_name: "Runner",
-    //   //   password: 'Apples',
-    //   //   id: 2
-    //   // });
-
-    //   // const result = await store.show("1");
-    //   // expect(result).toEqual(jasmine.objectContaining({
-    //   //   first_name: 'John',
-    //   //   last_name: "smith",
-    //   //   id: 1
-    //   // }));
-
-    //   // expect(result).toEqual(jasmine.objectContaining({
-    //   //   id: 1,
-    //   //   first_name: 'John',
-    //   //   last_name: "smith"
-    //   // }));
-
-    //   // expect(result).toEqual(jasmine.objectContaining({
-    //   //   first_name: 'Sally',
-    //   //   last_name: "Runner",
-    //   //   id: 2
-    //   // }));
-
     // });
 
   });

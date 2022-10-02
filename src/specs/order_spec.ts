@@ -1,8 +1,9 @@
-import { Product, ProductStore} from '../models/product';
+import { OrderStore, Order } from "../models/order";
 
-const store = new ProductStore();
 
-describe("Products Model", () => {
+const store = new OrderStore();
+
+describe("Order Model", () => {
     it('should have an index method', () => {
       expect(store.index).toBeDefined();
     });
@@ -15,4 +16,4 @@ describe("Products Model", () => {
       expect(store.index).toBeDefined();
     });
     
-  });
+});

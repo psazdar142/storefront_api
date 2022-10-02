@@ -1,6 +1,0 @@
-1.) user_spec.ts jasmine test does not working 
-    - Function: it('show method should return the correct user', async () => {
-
-2.) How to populate the orders table using the User and Product models?
-    - Ex.) Doug (user) buys 1 apple (product), 3 bananas (product), and 4 oranges (product). How to update order object.
-    
