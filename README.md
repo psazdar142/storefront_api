@@ -2,13 +2,12 @@
 
 ## Getting Started
 
-This project utilizes postgres and yarn, so be sure to have both **installed** on your machine. In addition, create two empty databases with the following names.
+1.) This project utilizes postgres and yarn, so be sure to have both **installed** on your machine. In addition, create two empty databases with the following names.
 
 - postgres
 - postgres_test
 
-
-Next, navigate to the .env file and fill in the approriate fields to setup the project with your database and security settings. Below is a reference to the file to assist in setting it up.
+2.) Next, create a ".env" file in the root of the project and copy the text below to begin configuring the server, database, and security settings.
 
 POSTGRES_HOST=localhost
 
@@ -31,7 +30,8 @@ POSTGRES_TESTING_DB=postgres_test
 TOKEN_SECRET=< enter string to be used for json web token >
 
 
-Install required node modules using the following command
+
+3.) Install required node modules using the following command
 
 - yarn
 
@@ -41,16 +41,13 @@ Start Server
 
 - yarn watch
 
-
 Run Jasmine unit test
 
 - yarn test
 
-
 Get database table set up configuration
 
 - db-migrate up
-
 
 Tear down database tables
 
@@ -76,8 +73,6 @@ json body {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
 }
 
-
-
 <<<<< Product Endpoints >>>>>
 create -> POST -> http://localhost:3000/products
 json body {
@@ -96,8 +91,6 @@ show -> GET -> http://localhost:3000/products/1
 json body {
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
 }
-
-
 
 <<<<< Order Endpoints >>>>>
 create -> POST -> http://localhost:3000/orders
