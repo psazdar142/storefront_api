@@ -2,20 +2,41 @@
 
 ## Getting Started
 
-1.) This project utilizes postgres and yarn, so be sure to have both **installed** on your machine. In addition, create two empty databases with the following names.
+1.) This project utilizes postgres and yarn, so be sure to have both **installed**
 
-- postgres
-- postgres_test
+2.) Set up database using the following steps
 
-2.) Next, create a ".env" file in the root of the project and copy the text below to begin configuring the server, database, and security settings.
+* Create a user
+
+  * ```
+    CREATE USER store_front_user WITH PASSWORD 'storefront_password';
+    ```
+* Create a development database and a testing database
+
+  * ```dasd
+    CREATE DATABASE postgres;
+    ```
+  * ```
+    CREATE DATABASE postgres_test;
+    ```
+* Grant all database privleges to user in both databases
+
+  * ```
+    GRANT ALL PRIVILEDGES ON DATABASE postgress to store_front_user
+    ```
+  * ```
+    GRANT ALL PRIVILEDGES ON DATABASE postgress_test to store_front_user
+    ```
+
+3.) Next, create a ".env" file in the root of the project and copy the text below to begin configuring the server, database, and security settings. NOTE: the enviorment (ENV) is set to "dev" by default. Running the command "yarn test" will change the enviorment to "test" when running unit tests.
 
 POSTGRES_HOST=localhost
 
 POSTGRES_DB=postgres
 
-POSGRES_USER=< enter your postgres db user name >
+POSGRES_USER=store_front_user
 
-POSTGRES_PASSWORD=< enter your postgres db password >
+POSTGRES_PASSWORD=store_front_password
 
 PORT=5432
 
@@ -29,9 +50,7 @@ POSTGRES_TESTING_DB=postgres_test
 
 TOKEN_SECRET=< enter string to be used for json web token >
 
-
-
-3.) Install required node modules using the following command
+4.) Install required node modules using the following command
 
 - yarn
 
