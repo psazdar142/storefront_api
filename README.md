@@ -70,7 +70,7 @@ Get database table set up configuration
 
 Tear down database tables
 
-- db-migrate down -c 3
+- db-migrate down -c 4
 
 ## API Endpoint Examples
 
@@ -97,7 +97,6 @@ create -> POST -> http://localhost:3000/products
 json body {
     "product_name": "Apple",
     "product_price": "5",
-    "id": "1",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
 }
 
@@ -114,7 +113,6 @@ json body {
 <<<<< Order Endpoints >>>>>
 create -> POST -> http://localhost:3000/orders
 json body {
-    "id": 1,
     "product_id": 1,
     "product_quantity": 3,
     "user_id": 1,

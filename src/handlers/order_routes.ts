@@ -54,7 +54,7 @@ const create = async (req: Request, res: Response) => {
       res.json(newOrder)
   } catch(err) {
       res.status(400)
-      res.json(err)
+      res.json('BAD REQUEST ' + err)
   }
 }
 

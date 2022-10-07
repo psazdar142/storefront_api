@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node src/server.ts",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
-    "test": "npx tsc && db-migrate --env test up && cross-env ENV=test jasmine && db-migrate --env test down -c 3",
+    "test": "npx tsc && db-migrate --env test up && cross-env ENV=test jasmine && db-migrate --env test down -c 4",
     "tsc": "tsc --outDir ./dist"
   },
   "author": "Udacity",

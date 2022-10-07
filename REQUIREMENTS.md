@@ -38,7 +38,6 @@ These are the notes from a meeting with the frontend developer that describe wha
       {
           "product_name": string,
           "product_price": string,
-          "id": "1",
           "token": < JWT token >
       }
       ```
@@ -98,7 +97,6 @@ These are the notes from a meeting with the frontend developer that describe wha
   * body:
     * ```
       {
-         "id": 1,
          "product_id": int,
          "product_quantity": int,
          "user_id": int,
