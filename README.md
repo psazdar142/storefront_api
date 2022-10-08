@@ -113,8 +113,8 @@ json body {
 <<<<< Order Endpoints >>>>>
 create -> POST -> http://localhost:3000/orders
 json body {
-    "product_id": 1,
-    "product_quantity": 3,
+    "product_id": [1,2],
+    "product_quantity": [5,6],
     "user_id": 1,
     "order_status": "COMPLETE",
     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"

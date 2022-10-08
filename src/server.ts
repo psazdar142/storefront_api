@@ -5,6 +5,7 @@ import user_routes from './handlers/user_routes'
 import product_routes from './handlers/product_routes'
 import order_routes from './handlers/order_routes'
 import cors from 'cors'
+import { Order_To_Procuct_Store, Order_to_product } from './models/order_to_product'
 
 const app: express.Application = express()
 const address: string = "0.0.0.0:3000"
@@ -17,7 +18,7 @@ const corsOptions = {
 app.use(cors(corsOptions))
 app.use(bodyParser.json())
 
-app.get('/', async function (req: Request, res: Response) {
+app.get('/', async function (req: Request, res: Response) {    
     res.send('Hello World!')
 })
 
