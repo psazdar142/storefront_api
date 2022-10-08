@@ -8,43 +8,122 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Products
 
-- Index
-- Show
-- Create [token required]
-- [OPTIONAL] Top 5 most popular products
-- [OPTIONAL] Products by category (args: product category)
+* Index
+
+  * Request: GET
+  * route: /products
+  * body:
+
+    * ```{
+      {
+         "token": < JWT token >
+      }
+      ```
+* Show
+
+  * Request: GET
+  * route: /products/{ product id }
+  * body:
+    * ```{
+      {
+         "token": < JWT token >
+      }
+      ```
+* Create
+
+  * Request: POST
+  * route: /products
+  * body:
+    * ```
+      {
+          "product_name": string,
+          "product_price": string,
+          "token": < JWT token >
+      }
+      ```
 
 #### Users
 
-- Index [token required]
-- Show [token required]
-- Create N[token required]
+* Index
+
+  * Request: GET
+  * route: /users
+  * body:
+
+    * ```{
+      {
+         "token": < JWT token >
+      }
+      ```
+* Show
+
+  * Request: GET
+  * route: /users/{ user id }
+  * body:
+    * ```{
+      {
+         "token": < JWT token >
+      }
+      ```
+* Create
+
+  * Request: POST
+  * route: /users
+  * body:
+    * ```
+      {
+         "first_name": string,
+         "last_name": string,
+         "password": string
+      }
+      ```
 
 #### Orders
 
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
+* Show
+
+  * Request: GET
+  * route: /orders/{ user id }
+  * body:
+    * ```{
+      {
+         "token": < JWT token >
+      }
+      ```
+* Create
+
+  * Request: POST
+  * route: /orders
+  * body:
+    * ```
+      {
+         "product_id": int,
+         "product_quantity": int,
+         "user_id": int,
+         "order_status": string,
+         "token": < JWT token >
+      }
+      ```
 
 ## Data Shapes
 
 #### Product
 
-- id
-- name
-- price
-- [OPTIONAL] category
+* id: PRIMARY KEY
+* name: VARCHAR(100)
+* price: INTEGER
 
 #### User
 
-- id
-- firstName
-- lastName
-- password
+* id: PRIMARY KEY
+* firstName: VARCHAR(100)
+* lastName: VARCHAR(100)
+* password: VARCHAR(100)
 
 #### Orders
 
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+* id: PRIMARY KEY
+* id of each product in the order: INTEGER -----> FORIGN KEY
+* quantity of each product in the order: INTEGER
+* user_id: INTEGER -----> FORIGN KEY
+* status of order (active or complete): VARCHAR 100

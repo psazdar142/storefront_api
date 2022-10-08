@@ -1,55 +1,131 @@
-# Storefront Backend Project
+# Storefront Backend
 
 ## Getting Started
 
-This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
+1.) This project utilizes postgres and yarn, so be sure to have both **installed**
 
-## Required Technologies
+2.) Set up database using the following steps
 
-Your application must make use of the following libraries:
+* Create a user
 
-- Postgres for the database
-- Node/Express for the application logic
-- dotenv from npm for managing environment variables
-- db-migrate from npm for migrations
-- jsonwebtoken from npm for working with JWTs
-- jasmine from npm for testing
+  * ```
+    CREATE USER store_front_user WITH PASSWORD 'storefront_password';
+    ```
+* Create a development database and a testing database
 
-## Steps to Completion
+  * ```dasd
+    CREATE DATABASE postgres;
+    ```
+  * ```
+    CREATE DATABASE postgres_test;
+    ```
+* Grant all database privleges to user in both databases
 
-### 1. Plan to Meet Requirements
+  * ```
+    GRANT ALL PRIVILEDGES ON DATABASE postgress to store_front_user
+    ```
+  * ```
+    GRANT ALL PRIVILEDGES ON DATABASE postgress_test to store_front_user
+    ```
 
-In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API.
+3.) Next, create a ".env" file in the root of the project and copy the text below to begin configuring the server, database, and security settings. NOTE: the enviorment (ENV) is set to "dev" by default. Running the command "yarn test" will change the enviorment to "test" when running unit tests.
 
-Your first task is to read the requirements and update the document with the following:
+POSTGRES_HOST=localhost
 
-- Determine the RESTful route for each endpoint listed. Add the RESTful route and HTTP verb to the document so that the frontend developer can begin to build their fetch requests.**Example**: A SHOW route: 'blogs/:id' [GET]
-- Design the Postgres database tables based off the data shape requirements. Add to the requirements document the database tables and columns being sure to mark foreign keys.
-  **Example**: You can format this however you like but these types of information should be provided
-  Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar, publisher_id:string[foreign key to publishers table], pages:number)
+POSTGRES_DB=postgres
 
-**NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape.
+POSGRES_USER=store_front_user
 
-### 2.  DB Creation and Migrations
+POSTGRES_PASSWORD=store_front_password
 
-Now that you have the structure of the databse outlined, it is time to create the database and migrations. Add the npm packages dotenv and db-migrate that we used in the course and setup your Postgres database. If you get stuck, you can always revisit the database lesson for a reminder.
+PORT=5432
 
-You must also ensure that any sensitive information is hashed with bcrypt. If any passwords are found in plain text in your application it will not pass.
+BCRYPT_PASSWORD=< enter string to be used as password salt >
 
-### 3. Models
+SALT_ROUNDS=< # for how many times the password is hashed>
 
-Create the models for each database table. The methods in each model should map to the endpoints in `REQUIREMENTS.md`. Remember that these models should all have test suites and mocks.
+ENV=dev
 
-### 4. Express Handlers
+POSTGRES_TESTING_DB=postgres_test
 
-Set up the Express handlers to route incoming requests to the correct model method. Make sure that the endpoints you create match up with the enpoints listed in `REQUIREMENTS.md`. Endpoints must have tests and be CORS enabled.
+TOKEN_SECRET=< enter string to be used for json web token >
 
-### 5. JWTs
+4.) Install required node modules using the following command
 
-Add JWT functionality as shown in the course. Make sure that JWTs are required for the routes listed in `REQUIUREMENTS.md`.
+- yarn
 
-### 6. QA and `README.md`
+## Commands
 
-Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database.
+Start Server
 
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+- yarn watch
+
+Run Jasmine unit test
+
+- yarn test
+
+Get database table set up configuration
+
+- db-migrate up
+
+Tear down database tables
+
+- db-migrate down -c 4
+
+## API Endpoint Examples
+
+<<<<< User Endpoint Examples >>>>>
+create -> POST -> http://localhost:3000/users
+json body {
+    "first_name": "Arthur",
+    "last_name": "Robbinson",
+    "password": "fruit"
+}
+
+index -> GET -> http://localhost:3000/users
+json body {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+}
+
+show -> GET -> http://localhost:3000/users/1
+json body {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+}
+
+<<<<< Product Endpoints >>>>>
+create -> POST -> http://localhost:3000/products
+json body {
+    "product_name": "Apple",
+    "product_price": "5",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+}
+
+index -> GET -> http://localhost:3000/products
+json body {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+}
+
+show -> GET -> http://localhost:3000/products/1
+json body {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+}
+
+<<<<< Order Endpoints >>>>>
+create -> POST -> http://localhost:3000/orders
+json body {
+    "product_id": [1,2],
+    "product_quantity": [5,6],
+    "user_id": 1,
+    "order_status": "COMPLETE",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+}
+
+index -> GET -> http://localhost:3000/orders
+json body {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+}
+
+show -> GET -> http://localhost:3000/orders/1
+json body {
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+}

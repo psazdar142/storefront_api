@@ -1,9 +1,9 @@
 import client from '../database'
 
 export type Order = {
-    id: Number;
-    product_id: Number;
-    product_quantity: Number;
+    // id: Number;
+    // product_id: Number;
+    // product_quantity: Number;
     user_id: Number;
     order_status: string;
 }
@@ -27,11 +27,11 @@ export class OrderStore {
         try {
             // @ts-ignore
             const conn = await client.connect()
-            const sql = 'INSERT INTO orders_table (product_id, product_quantity, user_id, order_status) VALUES($1, $2, $3, $4) RETURNING *'
-            const result = await conn.query(sql, [o.product_id, o.product_quantity, o.user_id, o.order_status])
+            const sql = 'INSERT INTO orders_table (user_id, order_status) VALUES($1, $2) RETURNING *'
+            const result = await conn.query(sql, [o.user_id, o.order_status])
             conn.release()
             const Order = result.rows[0] 
-            return Order
+            return Order.id
         } catch (err) {
           throw new Error(`Could not add new Order. Error: ${err}`)
         }
