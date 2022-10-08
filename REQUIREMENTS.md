@@ -123,7 +123,11 @@ These are the notes from a meeting with the frontend developer that describe wha
 #### Orders
 
 * id: PRIMARY KEY
-* id of each product in the order: INTEGER -----> FORIGN KEY
-* quantity of each product in the order: INTEGER
 * user_id: INTEGER -----> FORIGN KEY
-* status of order (active or complete): VARCHAR 100
+* status of order: VARCHAR 100
+
+### order_to_products
+*   id: PRIMARY KEY
+*   order_id: INTEGER ------> FOREIGN KEY
+*   product_id: INTEGER ------> FOREIGN KEY
+*   product_quantity: INTEGER

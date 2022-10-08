@@ -50,10 +50,37 @@ POSTGRES_TESTING_DB=postgres_test
 
 TOKEN_SECRET=< enter string to be used for json web token >
 
-4.) Install required node modules using the following command
+4.) Navigate to the database.json file and enter your postgres user name and password as show below.
+{
+    "dev": {
+      "driver": "pg",
+      "host": "localhost",
+      "database": "postgres",
+      "user": "store_front_user",
+      "password": "store_front_password",
+      "port": "5432"
+    },
+    "test": {
+      "driver": "pg",
+      "host": "localhost",
+      "database": "postgres_test",
+      "user": "store_front_user",
+      "password": "store_front_password",
+      "port": "5432"
+    }
+  }
+
+5.) Install required node modules using the following command
 
 - yarn
 
+6.) Set up db tables
+
+- db-migrate up
+
+7.) Start server
+
+- yarn watch
 ## Commands
 
 Start Server
@@ -84,12 +111,12 @@ json body {
 
 index -> GET -> http://localhost:3000/users
 json body {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkQ0ttd082dHNuY3lGQ2lMSHJwSWs4LmhycTQubW9MeXBuVFY5YmdPcE5YNUkvVklHZmp4OU8ifSwiaWF0IjoxNjY1MjY1NzA1fQ.iySZZVhgdZOD-NE7fSZrbA-h4sMjNa0nJgCJ3gvuKYU"
 }
 
 show -> GET -> http://localhost:3000/users/1
 json body {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkQ0ttd082dHNuY3lGQ2lMSHJwSWs4LmhycTQubW9MeXBuVFY5YmdPcE5YNUkvVklHZmp4OU8ifSwiaWF0IjoxNjY1MjY1NzA1fQ.iySZZVhgdZOD-NE7fSZrbA-h4sMjNa0nJgCJ3gvuKYU"
 }
 
 <<<<< Product Endpoints >>>>>
@@ -97,17 +124,17 @@ create -> POST -> http://localhost:3000/products
 json body {
     "product_name": "Apple",
     "product_price": "5",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkQ0ttd082dHNuY3lGQ2lMSHJwSWs4LmhycTQubW9MeXBuVFY5YmdPcE5YNUkvVklHZmp4OU8ifSwiaWF0IjoxNjY1MjY1NzA1fQ.iySZZVhgdZOD-NE7fSZrbA-h4sMjNa0nJgCJ3gvuKYU"
 }
 
 index -> GET -> http://localhost:3000/products
 json body {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkQ0ttd082dHNuY3lGQ2lMSHJwSWs4LmhycTQubW9MeXBuVFY5YmdPcE5YNUkvVklHZmp4OU8ifSwiaWF0IjoxNjY1MjY1NzA1fQ.iySZZVhgdZOD-NE7fSZrbA-h4sMjNa0nJgCJ3gvuKYU"
 }
 
 show -> GET -> http://localhost:3000/products/1
 json body {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkQ0ttd082dHNuY3lGQ2lMSHJwSWs4LmhycTQubW9MeXBuVFY5YmdPcE5YNUkvVklHZmp4OU8ifSwiaWF0IjoxNjY1MjY1NzA1fQ.iySZZVhgdZOD-NE7fSZrbA-h4sMjNa0nJgCJ3gvuKYU"
 }
 
 <<<<< Order Endpoints >>>>>
@@ -117,15 +144,15 @@ json body {
     "product_quantity": [5,6],
     "user_id": 1,
     "order_status": "COMPLETE",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkQ0ttd082dHNuY3lGQ2lMSHJwSWs4LmhycTQubW9MeXBuVFY5YmdPcE5YNUkvVklHZmp4OU8ifSwiaWF0IjoxNjY1MjY1NzA1fQ.iySZZVhgdZOD-NE7fSZrbA-h4sMjNa0nJgCJ3gvuKYU"
 }
 
-index -> GET -> http://localhost:3000/orders
+index -> GET -> http://localhost:3000/orders/1
 json body {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkQ0ttd082dHNuY3lGQ2lMSHJwSWs4LmhycTQubW9MeXBuVFY5YmdPcE5YNUkvVklHZmp4OU8ifSwiaWF0IjoxNjY1MjY1NzA1fQ.iySZZVhgdZOD-NE7fSZrbA-h4sMjNa0nJgCJ3gvuKYU"
 }
 
 show -> GET -> http://localhost:3000/orders/1
 json body {
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjo1LCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkWnZVemVKbVdrNXZlODRTSnBtL2g4T09uWXlsMVdxd0Q2OGgwd0dLb1JoaU9Kc01LeUIvalcifSwiaWF0IjoxNjY0NzQ2MjAzfQ.YndtEy6nNXPkLRQSpmIv206ILQ3xaeVLXB7-qHvLAyc"
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoxLCJmaXJzdF9uYW1lIjoiQXJ0aHVyIiwibGFzdF9uYW1lIjoiUm9iYmluc29uIiwicGFzc3dvcmQiOiIkMmIkMTAkQ0ttd082dHNuY3lGQ2lMSHJwSWs4LmhycTQubW9MeXBuVFY5YmdPcE5YNUkvVklHZmp4OU8ifSwiaWF0IjoxNjY1MjY1NzA1fQ.iySZZVhgdZOD-NE7fSZrbA-h4sMjNa0nJgCJ3gvuKYU"
 }
