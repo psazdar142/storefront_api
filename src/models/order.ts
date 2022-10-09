@@ -23,7 +23,7 @@ export class OrderStore {
         }
     }
 
-    async create(o: Order): Promise<Order[]> {
+    async create(o: Order): Promise<Number> {
         try {
             // @ts-ignore
             const conn = await client.connect()

@@ -1,6 +1,14 @@
+import { skipPartiallyEmittedExpressions } from "typescript";
+
 const {UserStore} = require("../models/user") 
 
 const store = new UserStore()
+// const result = store.create({
+//   first_name: 'John',
+//   last_name: "smith",
+//   password: "cows",
+//   id: 1
+// });
 
 // store.create({
 //   first_name: 'Adam',
@@ -26,34 +34,45 @@ describe("User Model", () => {
       expect(store.delete).toBeDefined();
     });
 
-    // it('create method should add a user', async () => {
-    //   const result = await store.create({
-    //     first_name: 'John',
-    //     last_name: "smith",
-    //     password: "cows",
-    //     id: 1
-    //   });
-    //   expect(result).toEqual(jasmine.objectContaining({
-    //     first_name: 'John',
-    //     last_name: "smith"
-    //   }));
-    // });
+    it('create method should add a user', async () => {
+      const result = await store.create({
+        first_name: 'John',
+        last_name: "smith",
+        password: "cows",
+        id: 1
+      });
+      expect(result).toEqual(jasmine.objectContaining({
+        first_name: 'John',
+        last_name: "smith"
+      }));
+    });
 
-    // it('show method should return the correct user', async () => {
-    //   const result = await store.show("1");
-    //   expect(result).toEqual(jasmine.objectContaining({
-    //     first_name: 'John',
-    //     last_name: "smith"
-    //   }));
-    // });
+    it('show method should return the correct user', async () => {
+      const result = await store.show("1");
+      expect(result).toEqual(jasmine.objectContaining({
+        first_name: 'John',
+        last_name: "smith"
+      }));
+    });
 
     // it('index method should return all users', async () => {
     //   const result = await store.index;
-    //   expect(result).toEqual(jasmine.objectContaining({
-    //     id: 1,
-    //     first_name: 'John',
-    //     last_name: "smith"
-    //   }));
+    //   console.log("RESULT: " + result)
+    //   expect(result).toEqual(
+    //     jasmine.objectContaining({
+    //       first_name: 'John',
+    //       last_name: "smith"
+    //     })
+    //   );
     // });
 
   });
+
+
+  function sleep(milliseconds: Number) {
+    const date = Date.now();
+    let currentDate = null;
+    do {
+      currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+  }

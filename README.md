@@ -28,7 +28,7 @@
     GRANT ALL PRIVILEDGES ON DATABASE postgress_test to store_front_user
     ```
 
-3.) Next, create a ".env" file in the root of the project and copy the text below to begin configuring the server, database, and security settings. NOTE: the enviorment (ENV) is set to "dev" by default. Running the command "yarn test" will change the enviorment to "test" when running unit tests.
+3.) Next, create a ".env" file in the root of the project and copy the text below to begin configuring the server, database, port, and security settings. NOTE: the enviorment (ENV) is set to "dev" by default. Running the command "yarn test" will change the enviorment to "test" when running unit tests. 
 
 POSTGRES_HOST=localhost
 
@@ -50,7 +50,7 @@ POSTGRES_TESTING_DB=postgres_test
 
 TOKEN_SECRET=< enter string to be used for json web token >
 
-4.) Navigate to the database.json file and enter your postgres user name and password as show below.
+4.) Navigate to the database.json file and enter your postgres user name and password as well as your desired port number as shown below. By default this program uses port 5432.
 {
     "dev": {
       "driver": "pg",

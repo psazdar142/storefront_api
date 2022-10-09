@@ -58,6 +58,13 @@ const create = async (req: Request, res: Response) => {
 }
 
 const destroy = async (req: Request, res: Response) => {
+  try {
+    jwt.verify(req.body.token, token_secret)
+} catch (err) {
+    res.status(401)
+    res.json('Invalid token ' + err)
+    return
+}
     const deleted = await store.delete(req.body.id)
     res.json(deleted)
 }
