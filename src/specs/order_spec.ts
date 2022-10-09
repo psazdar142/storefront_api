@@ -11,7 +11,8 @@ describe("Order Model", () => {
       expect(store.index).toBeDefined();
     });
   
-    it('should have a show method', () => {
+    it('should have a show method', () => 
+    {
       expect(store.index).toBeDefined();
     });
   

@@ -56,15 +56,5 @@ describe("Products Model", () => {
         product_price: 32
       }));
     });
-
-    // it('index method should return all products', async () => {
-    //   const result = await store.index;
-    //   expect(result).toEqual(
-    //     jasmine.objectContaining({
-    //       product_name: "dog food",
-    //       product_price: 5
-    //     })
-    //   );
-    // });
     
   });
